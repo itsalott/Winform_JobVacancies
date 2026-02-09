@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using JobVacancies._99_Helpers;
 using System.IO;
+using JobVacancies.ItsaLott.Mathbuddy;
 
 namespace JobVacancies._00_Map
 {

@@ -49,7 +49,9 @@
     <Compile Include="00-Map\MapBox.cs" />
     <Compile Include="01-PostalCodes\PostalCode.cs" />
     <Compile Include="01-PostalCodes\PostalCodeLocationManager.cs" />
+    <Compile Include="02-Coordinates\CoordinateHelper.cs" />
     <Compile Include="99-Helpers\CsvImporter.cs" />
+    <Compile Include="99-Helpers\MathBuddy\Vector.cs" />
     <Compile Include="99-Helpers\ProjectRootPath.cs" />
     <Compile Include="JobVacanciesFrm.cs">
       <SubType>Form</SubType>
@@ -57,7 +59,7 @@
     <Compile Include="JobVacanciesFrm.Designer.cs">
       <DependentUpon>JobVacanciesFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="99-Helpers\MathBuddy.cs" />
+    <Compile Include="99-Helpers\MathBuddy\MathBuddy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="JobVacanciesFrm.resx">

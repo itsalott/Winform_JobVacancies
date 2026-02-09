@@ -1,5 +1,8 @@
 ﻿using JobVacancies._00_Map;
 using JobVacancies._01_PostalCodes;
+using JobVacancies._02_Coordinates;
+using JobVacancies._99_Helpers.Math.ItsaLott.Mathbuddy;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace JobVacancies
@@ -22,6 +25,9 @@ namespace JobVacancies
         {
             map = new MapBox(pictureBox, ClientSize);
             locationManager = new PostalCodeLocationManager();
+
+            // longitude latitude test:
+            Debug.WriteLine("groningen long lati: " + CoordinateHelper.ToLongLatiCoord(new Vector2(908, 158), Vector2.ZERO));
         }
     }
 }
