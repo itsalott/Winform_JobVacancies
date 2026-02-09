@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Globalization;
+using System.IO;
 using System.Linq;
 using JobVacancies._01_PostalCodes;
 
@@ -43,9 +44,9 @@ namespace JobVacancies
                     //column 7
                     streetNumberMax: uint.Parse(values[7]),
                     //column 11
-                    latitude: double.Parse(values[11]),
+                    latitude: double.Parse(values[11], NumberStyles.Number, CultureInfo.InvariantCulture),
                     //column 12
-                    longitude: double.Parse(values[12]))
+                    longitude: double.Parse(values[12], NumberStyles.Number, CultureInfo.InvariantCulture))
                 { };
             }
 
