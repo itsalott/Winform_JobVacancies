@@ -1,0 +1,2 @@
+0_PostcodeID,	1_PostCodePK,		2_PostCode,		3_PostcodeNummers,		4_PostcodeLetters,		5_Straat,			6_MinNummer,	7_MaxNummer,	8_Plaats,		9_Gemeente,		10_Provincie,		11_Latitude,			12_Longitude
+1,				6651EH_22,			6651EH,			6651,					EH,						Genechtstraat,		22,				32,				Druten,			Druten,			Gelderland,			51.8876046309833,		5.5977233668844
