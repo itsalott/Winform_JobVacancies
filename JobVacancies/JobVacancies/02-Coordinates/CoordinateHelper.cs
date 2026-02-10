@@ -1,31 +1,16 @@
 ﻿using JobVacancies._99_Helpers.Math.ItsaLott.Mathbuddy;
+using JobVacancies.ItsaLott.Mathbuddy;
 using System;
 
 namespace JobVacancies._02_Coordinates
 {
     public static class CoordinateHelper
     {
-        // Notes for calculation (not perfect, google for help tomorrow ;) ):
-        // Coordinate Utrecht            = 52.052699,    5.0719999
-        // Pixels Utrecht                = 508.5,        670.5
+        
+        private static readonly Vector2 LONG_LATI_MIN = new Vector2(3.1, 53.6);
+        private static readonly Vector2 LONG_LATI_MAX = new Vector2(7.1, 50.4);
 
-        // Coordinate Arnhem             = 51.5848,      5.544
-        // Pixels Arnhem                 = 734.5,        717.5
-
-        // LongLati Utrecht -> Arnhem   = -0.467899,    0.4720001
-        // Px Utrecht -> Arhem          = 226,          47
-
-        // LongLati Source (0,0)        = 53.10547175,   -1.6615334414893
-
-        /// <summary>
-        /// This is the vector (in longitude latitude coordinates) that points to pixel coordinate 0,0 on the map (used in this application).
-        /// </summary>
-        public static readonly Vector2 LONG_LATI_CORRECTION_OFFSET = new Vector2(53.10547175, -1.6615334414893);
-
-        /// <summary>
-        /// Vector (1,1) in pixels, converted to longtitude latitude coordinates.
-        /// </summary>
-        public static readonly Vector2 LONG_LATI_SCALAR = new Vector2(-0.0020703495575, 0.0100425553191);
+        public static Vector2 MapSize { get; set; }
 
         /// <summary>
         /// Convert pixel coordinate to a longitude lattitude coordinate.
@@ -36,8 +21,10 @@ namespace JobVacancies._02_Coordinates
         {
             // remove map displacement, so position is relative to mapcoordinate (0,0) again
             pixelCoord -= mapPosition;
+            
+            Vector2 t = pixelCoord / MapSize;
 
-            return pixelCoord * LONG_LATI_SCALAR + LONG_LATI_CORRECTION_OFFSET;
+            return Vector2.Lerp(LONG_LATI_MIN, LONG_LATI_MAX, t);
         }
 
         /// <summary>
@@ -47,10 +34,13 @@ namespace JobVacancies._02_Coordinates
         /// <param name="mapPosition">Translation of the map, in pixels.</param>
         public static Vector2 ToPixelCoord(this Vector2 longLatiCoord, Vector2 mapPosition)
         {
-            // longitude vector from origin
-            longLatiCoord -= LONG_LATI_CORRECTION_OFFSET;
+            // convert to vector from origin
+            longLatiCoord -= LONG_LATI_MIN;
 
-            return longLatiCoord / LONG_LATI_SCALAR + mapPosition;
+            // get t value, based on vector length
+            Vector2 t = longLatiCoord / (LONG_LATI_MAX - LONG_LATI_MIN);
+
+            return Vector2.Lerp(Vector2.ZERO, MapSize, t);
         }
     }
 }

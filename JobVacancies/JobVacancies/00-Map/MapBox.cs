@@ -11,6 +11,8 @@ namespace JobVacancies._00_Map
     {
         private const string MAP_PATH = @"Data\Map\MapNL_01.jpg";
 
+        public Size ImageSize { get { return Image.PhysicalDimension.ToSize(); } }
+
         private bool inPan = false;
         private Point panStart = Point.Empty;
         private Point imagePos = Point.Empty;
@@ -67,7 +69,7 @@ namespace JobVacancies._00_Map
         private void Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.Clear(container.BackColor);
-            e.Graphics.DrawImage(Image, new Rectangle(imagePos, Image.PhysicalDimension.ToSize()));
+            e.Graphics.DrawImage(Image, new Rectangle(imagePos, ImageSize));
             e.Dispose();
         }
     }

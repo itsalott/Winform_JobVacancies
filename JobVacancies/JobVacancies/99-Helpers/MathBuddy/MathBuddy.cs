@@ -50,6 +50,11 @@ namespace JobVacancies
             {
                 return new Vector2(point.X, point.Y);
             }
+
+            public static Vector2 ToVector2(this Size size)
+            {
+                return new Vector2(size.Width, size.Height);
+            }
         }
     }
 }
