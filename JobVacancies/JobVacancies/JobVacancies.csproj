@@ -50,6 +50,8 @@
     <Compile Include="01-PostalCodes\PostalCode.cs" />
     <Compile Include="01-PostalCodes\PostalCodeLocationManager.cs" />
     <Compile Include="02-Coordinates\CoordinateHelper.cs" />
+    <Compile Include="03-Jobs\Job.cs" />
+    <Compile Include="03-Jobs\JobManager.cs" />
     <Compile Include="99-Helpers\CsvImporter.cs" />
     <Compile Include="99-Helpers\MathBuddy\Vector.cs" />
     <Compile Include="99-Helpers\ProjectRootPath.cs" />

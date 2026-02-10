@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using JobVacancies._01_PostalCodes;
+using JobVacancies._03_Jobs;
 
 namespace JobVacancies
 {
@@ -24,10 +25,6 @@ namespace JobVacancies
             string[] values;
             for (int i = 0; i < data.Length; i++)
             {
-                if (i == 247)
-                {
-                    int a = 0;
-                }
                 values = SplitCsvLine(data[i], separator);
                 
                 postalCodes[i] = new PostalCode(
@@ -53,6 +50,47 @@ namespace JobVacancies
             return postalCodes;
         }
 
+        public static Job[] ImportJobsFromCsv(string filePath, bool includesHeader, char separator = SEPARATOR)
+        {
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException($"Could not find file at path {filePath}!");
+
+            string[] data;
+            if (includesHeader)
+                data = File.ReadAllLines(filePath).Skip(1).ToArray();
+            else
+                data = File.ReadAllLines(filePath);
+
+            Job[] jobs = new Job[data.Length];
+            string[] values;
+            
+            int offset = 0;
+            ushort? postalCodeArea;
+            string province;
+            string municipality;
+            for (int i = 0; i < data.Length; i++)
+            {
+                values = SplitCsvLine(data[i], separator);
+                // column 5
+                postalCodeArea = (values[5] == null) ? (ushort?)null : ushort.Parse(values[5].Replace("\"", ""));
+                //column 6,
+                province = (values[6] == null) ? null : values[6].Replace("\"", "");
+                //column 7,
+                municipality = (values[7] == null) ? null : values[7].Replace("\"", "");
+
+                if (postalCodeArea == null && municipality == null)
+                {
+                    // not enough data, skip this job posting.
+                    offset++;
+                    continue;
+                }
+
+                jobs[i - offset] = new Job(postalCodeArea: postalCodeArea, province: province, municipality: municipality) { };
+            }
+
+            return jobs.Take(jobs.Length - offset).ToArray();
+        }
+
         private static string[] SplitCsvLine(string line, char separator, char quoteSign = '\"')
         {
             string[] values = line.Split(separator);
@@ -64,7 +102,7 @@ namespace JobVacancies
             {
                 //offset shift
                 value = values[i].Trim();
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || value == "\"\"")
                 {
                     if (inQuotes)
                     {

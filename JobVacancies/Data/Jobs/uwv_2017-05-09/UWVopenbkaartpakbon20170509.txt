@@ -1,0 +1,20 @@
+
+Categorie         Groepering                                # Records # Beroepen # Rec.typen # Geotypen                 
+----------------- ---------------------------------------- ---------- ---------- ----------- ----------                 
+01 - Totalen      Peildatum: 2017-05-09 (#       209)          187609       2567           3          4                 
+02 - Recordtype   Ervaringsberoep                               69004       2431           1          4                 
+02 - Recordtype   Wensberoep                                    43090       2140           1          4                 
+02 - Recordtype   Vacature                                      75515       1765           1          1                 
+03 - Geotype      Postcode                                     108696       1767           3          1                 
+03 - Geotype      Gemeente                                      51511       1203           2          1                 
+03 - Geotype      Provincie                                     22831       1893           2          1                 
+03 - Geotype      Landelijk                                      4571       2457           2          1                 
+04 - Rec-/Geotype Ervaringsberoep-Postcode                      21176        191           1          1                 
+04 - Rec-/Geotype Ervaringsberoep-Gemeente                      32133       1179           1          1                 
+04 - Rec-/Geotype Ervaringsberoep-Provincie                     13264       1876           1          1                 
+04 - Rec-/Geotype Ervaringsberoep-Landelijk                      2431       2431           1          1                 
+04 - Rec-/Geotype Wensberoep-Postcode                           12005        117           1          1                 
+04 - Rec-/Geotype Wensberoep-Gemeente                           19378        845           1          1                 
+04 - Rec-/Geotype Wensberoep-Provincie                           9567       1513           1          1                 
+04 - Rec-/Geotype Wensberoep-Landelijk                           2140       2140           1          1                 
+04 - Rec-/Geotype Vacature-Postcode                             75515       1765           1          1                 

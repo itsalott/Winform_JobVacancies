@@ -12,8 +12,6 @@
         double latitude;
         double longitude;
 
-        public PostalCode() { }
-
         public PostalCode(
             uint id, 
             ushort codeNumbers, 
