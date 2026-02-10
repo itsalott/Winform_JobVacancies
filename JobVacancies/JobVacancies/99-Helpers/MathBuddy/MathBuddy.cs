@@ -1,6 +1,5 @@
 ﻿using JobVacancies._99_Helpers.Math.ItsaLott.Mathbuddy;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 
 namespace JobVacancies
@@ -26,12 +25,10 @@ namespace JobVacancies
 
                 if (value < min)
                 {
-                    Debug.WriteLine("Miauw min");
                     return min;
                 }
                 else if (value > max)
                 {
-                    Debug.WriteLine("Miauw max");
                     return max;
                 }
 

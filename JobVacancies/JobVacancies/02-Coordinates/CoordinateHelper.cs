@@ -4,6 +4,9 @@ using System;
 
 namespace JobVacancies._02_Coordinates
 {
+    // There are much better implementations for lonitude latitude, but because of the time limit,
+    // I chose for a linear interpolation
+
     public static class CoordinateHelper
     {
         
@@ -31,14 +34,14 @@ namespace JobVacancies._02_Coordinates
         /// Convert a longitude latitude coordinate to a pixel coordinate.
         /// </summary>
         /// <param name="longLatiCoord">Coordinate on map, in longitude lattitude.</param>
-        /// <param name="mapPosition">Translation of the map, in pixels.</param>
+        /// <param name="mapPosition">Translation of the map, in pixels.</param> 
         public static Vector2 ToPixelCoord(this Vector2 longLatiCoord, Vector2 mapPosition)
         {
             // convert to vector from origin
             longLatiCoord -= LONG_LATI_MIN;
 
             // get t value, based on vector length
-            Vector2 t = longLatiCoord / (LONG_LATI_MAX - LONG_LATI_MIN);
+            Vector2 t = longLatiCoord / (LONG_LATI_MAX - LONG_LATI_MIN); 
 
             return Vector2.Lerp(Vector2.ZERO, MapSize, t);
         }

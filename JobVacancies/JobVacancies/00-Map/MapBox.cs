@@ -12,11 +12,11 @@ namespace JobVacancies._00_Map
         private const string MAP_PATH = @"Data\Map\MapNL_01.jpg";
 
         public Size ImageSize { get { return Image.PhysicalDimension.ToSize(); } }
+        public Size ClientSize { get; private set; }
 
         private bool inPan = false;
         private Point panStart = Point.Empty;
         private Point imagePos = Point.Empty;
-        private Size clientSize;
         
         private Image Image;
         private PictureBox container;
@@ -26,14 +26,21 @@ namespace JobVacancies._00_Map
             // Don't start 2th path with '/', Path.Combine will consider it rooted,
             // and only return this path.
             Image = Image.FromFile(Path.Combine(ProjectRootPath.Value, MAP_PATH));
-            this.clientSize = clientSize;
-
             container = pictureBox;
+            ClientSize = clientSize;
 
             container.Paint += new PaintEventHandler(Paint);
             container.MouseDown += new MouseEventHandler(OnMouseDown);
             container.MouseMove += new MouseEventHandler(OnMouseMove);
             container.MouseUp += new MouseEventHandler(OnMouseUp);
+        }
+
+        public void OnClientSizeChanged(object sender, EventArgs e)
+        {
+            if (!(sender is Form frm))
+                return;
+
+            ClientSize = frm.ClientSize;
         }
 
         private void OnMouseDown(object sender, MouseEventArgs e)
@@ -60,8 +67,8 @@ namespace JobVacancies._00_Map
         {
             if (inPan)
             {
-                imagePos = new Point(MathBuddy.Clamp(e.Location.X - panStart.X, -Math.Max(Image.Width - clientSize.Width, 0), 0),
-                                     MathBuddy.Clamp(e.Location.Y - panStart.Y, -Math.Max(Image.Height - clientSize.Height, 0), 0));
+                imagePos = new Point(MathBuddy.Clamp(e.Location.X - panStart.X, -Math.Max(Image.Width - ClientSize.Width, 0), 0),
+                                     MathBuddy.Clamp(e.Location.Y - panStart.Y, -Math.Max(Image.Height - ClientSize.Height, 0), 0));
                 container.Invalidate();
             }
         }
